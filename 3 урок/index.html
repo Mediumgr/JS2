@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="app">
+      <header class="center">
+        <div class="relative">
+          <form action="#" class="search-form">
+            <input type="text" class="search-field" />
+            <button class="btn-search" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+          <button class="cart-button" type="button">Корзина</button>
+        </div>
+      </header>
+      <div class="cart-block invisible">
+        <h3 class="totalPrice"></h3>
+      </div>
+      <main>
+        <div class="goods-list center"></div>
+      </main>
+      <h3 class="price"></h3>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
