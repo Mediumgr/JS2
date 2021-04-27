@@ -53,13 +53,17 @@ class List {
 
   /* подсчет стоимости всех товаров */
   calcSum() {
-    const totalPrice = this.allProducts.reduce((accum, item) => accum + (item.price * item.quantity), 0);
-    document.querySelector('.totalPrice').innerHTML = 'Итого: ' + `${totalPrice}` + ' ₽';
-    if (totalPrice === 0) {
+    return this.allProducts.reduce((accum, item) => accum + (item.price * item.quantity), 0);
+  }
+
+  /* Вывод данных */
+  productsPriceShow() {
+    let showPrice = document.querySelector('.totalPrice').innerHTML = 'Итого: ' + `${this.calcSum()}` + ' ₽';
+    if (showPrice === 'Итого: 0 ₽') {
       document.querySelector('.totalPrice').innerHTML = 'В корзине нет товаров';
     }
   }
-
+  
   /**
    * получение данных с сервера
    * @param url
@@ -173,7 +177,7 @@ class Cart extends List {
     this.getJson()
       .then(data => {
         this.handleData(data.contents);
-        this.calcSum();
+        this.productsPriceShow();
       });
   }
 
@@ -190,6 +194,7 @@ class Cart extends List {
           if (searchProduct) {
             searchProduct.quantity++;
             this._updateCart(searchProduct);
+            this.productsPriceShow();
           } else {
             let product = {
               id_product: productId,
@@ -203,7 +208,7 @@ class Cart extends List {
             this.goods = [product];
             // далее вызывая метод render, мы добавим в allProducts только его, тем самым избегая лишнего перерендера.
             this.render();
-            this.calcSum();
+            this.productsPriceShow();
           }
         } else {
           alert('Error');
@@ -224,10 +229,11 @@ class Cart extends List {
           if (searchProduct.quantity > 1) { // если товара > 1, то уменьшаем количество на 1
             searchProduct.quantity--;
             this._updateCart(searchProduct);
+            this.productsPriceShow();
           } else { // удаляем
             this.allProducts.splice(this.allProducts.indexOf(searchProduct), 1);
             document.querySelector(`.cart-item[data-id="${productId}"]`).remove();
-            this.calcSum();
+            this.productsPriceShow();
           }
         } else {
           alert('Error');
