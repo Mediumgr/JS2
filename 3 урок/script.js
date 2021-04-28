@@ -56,14 +56,16 @@ class List {
     return this.allProducts.reduce((accum, item) => accum + (item.price * item.quantity), 0);
   }
 
-  /* Вывод данных */
+  /* Вывод цены товаров корзины */
   productsPriceShow() {
-    let showPrice = document.querySelector('.totalPrice').innerHTML = 'Итого: ' + `${this.calcSum()}` + ' ₽';
-    if (showPrice === 'Итого: 0 ₽') {
+    let totalPrice = this.calcSum();
+    if (totalPrice !== 0) {
+      document.querySelector('.totalPrice').innerHTML = 'Итого: ' + `${totalPrice}` + ' ₽';
+    } else if (totalPrice === 0) {
       document.querySelector('.totalPrice').innerHTML = 'В корзине нет товаров';
     }
   }
-  
+
   /**
    * получение данных с сервера
    * @param url
@@ -125,9 +127,9 @@ class Item {
     this.id_product = el.id_product;
     this.img = el.img;
   }
-  render() {
-    return ``;
-  }
+  /*   render() {
+      return ``;
+    } */
 }
 /**
  * Наследуемся от базовых классов
@@ -194,7 +196,6 @@ class Cart extends List {
           if (searchProduct) {
             searchProduct.quantity++;
             this._updateCart(searchProduct);
-            this.productsPriceShow();
           } else {
             let product = {
               id_product: productId,
@@ -208,8 +209,8 @@ class Cart extends List {
             this.goods = [product];
             // далее вызывая метод render, мы добавим в allProducts только его, тем самым избегая лишнего перерендера.
             this.render();
-            this.productsPriceShow();
           }
+          this.productsPriceShow();
         } else {
           alert('Error');
         }
@@ -229,12 +230,11 @@ class Cart extends List {
           if (searchProduct.quantity > 1) { // если товара > 1, то уменьшаем количество на 1
             searchProduct.quantity--;
             this._updateCart(searchProduct);
-            this.productsPriceShow();
           } else { // удаляем
             this.allProducts.splice(this.allProducts.indexOf(searchProduct), 1);
             document.querySelector(`.cart-item[data-id="${productId}"]`).remove();
-            this.productsPriceShow();
           }
+          this.productsPriceShow();
         } else {
           alert('Error');
         }
@@ -247,18 +247,11 @@ class Cart extends List {
    * @private
    */
   _updateCart(product) {
-    let exchange = ' ₽';
-    let total = 0;
-    let countTotalPrice;
     let block = document.querySelector(`.cart-item[data-id="${product.id_product}"]`);
     block.querySelector('.product-quantity').textContent = `Количество: ${product.quantity}`;
-    block.querySelector('.product-price').textContent = `${product.quantity * product.price}` + `${exchange}`;
-    this.allProducts.forEach((element) => {
-      countTotalPrice = parseInt(`${element.quantity * element.price}`);
-      total += countTotalPrice;
-    });
-    document.querySelector('.totalPrice').innerHTML = 'Итого: ' + `${total}` + `${exchange}`;
+    block.querySelector('.product-price').textContent = `${product.quantity * product.price}` + ' ₽';
   }
+
   _init() {
     document.querySelector('.cart-button').addEventListener('click', () => {
       document.querySelector(this.container).classList.toggle('invisible');
