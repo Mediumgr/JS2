@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+    integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div id="app">
+    <header class="center">
+      <div class="cart">
+        <search-value ref="searchValue"></search-value>
+        <cart ref="cart"></cart>
+      </div>
+    </header>
+    <main>
+      <products ref="products"></products>
+      <error ref="error"></error>
+    </main>
+    <h3 class="price"></h3>
+  </div>
+  </div>
+  <script src="js/vue.js"></script>
+  <!--  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+  <!--   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="js/CartComp.js"></script>
+  <script src="js/ProducComp.js"></script>
+  <script src="js/FormComp.js"></script>
+  <script src="js/EroorComp.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
