@@ -1,0 +1,19 @@
+{
+  "name": "mystore",
+  "version": "1.0.0",
+  "description": "my store on vue",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-static": "^1.2.6",
+    "fs": "^0.0.1-security",
+    "moment": "^2.29.1",
+    "node-static": "^0.7.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "author": "Ruslan Guseinov",
+  "license": "ISC"
+}
