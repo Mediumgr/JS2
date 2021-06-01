@@ -1,26 +1,26 @@
 [{
-    "img": "img/teenager.png",
+    "img": "./img/teenager.png",
     "id_product": 1,
     "product_name": "T-shirt",
     "price": 50
   },
   {
-    "img": "img/girlinred.png",
+    "img": "./img/girlinred.png",
     "id_product": 2,
     "product_name": "T-shirt",
     "price": 30
   },
   {
-    "img": "img/barberman.png",
+    "img": "./img/barberman.png",
     "id_product": 3,
     "product_name": "T-shirt",
     "price": 45
   },
   {
-    "img": "img/girlwhite.png",
+    "img": "./img/girlwhite.png",
     "id_product": 4,
     "product_name": "T-shirt",
-    "price": 55
+    "price": 55.00
   },
   {
     "img": "img/blondgirl.png",
@@ -32,7 +32,7 @@
     "img": "img/guyjacket.png",
     "id_product": 6,
     "product_name": "T-shirt",
-    "price": 35
+    "price": 38
   },
   {
     "img": "img/pans.png",
@@ -44,6 +44,6 @@
     "img": "img/guyshorts.png",
     "id_product": 8,
     "product_name": "T-shirt",
-    "price": 55
+    "price": 54
   }
 ]

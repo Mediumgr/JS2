@@ -14,7 +14,7 @@ Vue.component('products', {
     },
     computed: {
         img() {
-            return `${window?.location.origin || ''}/img/teenager.png`;
+            return `${window?.location.origin || ''}/img/girlinred.png`;
         }
     },
     mounted() {
@@ -56,11 +56,11 @@ Vue.component('product', {
             ` */
 
         `<div class="product-item">
-                <a href="#"><img class="product-item__img" :src="img" alt="photo"></a>
+                <div href="#"><img class="product-item__img" :src="img" alt="photo"></div>
                 <div class="bottom">
                     <a href="#" class="text__mango">{{product.product_name}}</a>
-                    <p class="price">{{product.price}}$</p>
+                    <p class="price">&#36;{{product.price}}</p>
                 </div>
-                <a href="#" class="add__cart" @click="cartAPI.addProduct(product)"><img src="img/white_bin.png" alt="buy">Add to Cart</a>
+                <div href="#" class="add__cart" @click="cartAPI.addProduct(product)"><img src="img/white_bin.png" alt="buy">Add to Cart</div>
         </div>`
 });

@@ -67,7 +67,7 @@ app.post('/api/cart', (req, res) => {
   });
 });
 
-// Удаление товара из корзины (мой вариант)
+
 app.delete('/api/cart/:id', (req, res) => {
   fs.readFile('./server/db/userCart.json', 'utf-8', (err, data) => {
     if (err) {

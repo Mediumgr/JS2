@@ -666,6 +666,7 @@ a {
 }
 
 .add__cart {
+  cursor: pointer;
   position: absolute;
   top: 97px;
   left: 70px;

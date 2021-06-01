@@ -37,6 +37,7 @@ Vue.component('cart', {
                     .then(data => {
                         if (data.result === 1) {
                             item.quantity--;
+                            this.productsPriceShow();
                         }
                     });
             } else {
@@ -48,11 +49,9 @@ Vue.component('cart', {
                         }
                     });
             }
-            this.productsPriceShow();
         },
         productsPriceShow() {
-            this.outputPrice = this.calcSum();
-            this.totalPrice = 'Итого: ' + `${this.outputPrice}` + ' $';
+            this.totalPrice = this.calcSum();
         },
         calcSum() {
             return this.cartItems.reduce((accum, item) => accum + (item.price * item.quantity), 0);
@@ -73,20 +72,35 @@ Vue.component('cart', {
                    <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
                    <div class="cart-block" v-show="showCart">
                       <p v-if="!cartItems.length" style="padding-left: 55px">В корзине нет товаров</p>
-                       <cart-item class="cart-item" v-for="item of cartItems" :key="item.id_product":cart-item="item" :img="imgCart" @remove="remove"></cart-item>
+                       <cart-item class="cart-item" v-for="item of cartItems" :key="item.id_product" :cart-item="item" :img="imgCart" @remove="remove"></cart-item>
                     <h3 v-if=cartItems.length style="padding-left: 65px">{{totalPrice}}</h3>
                    </div>
                </div>` */
 
         `     <div class="bin__for__order">
-                    <div href="#" class="bin__img">
-                        <img class="header__cart" src="img/cart.png" alt="cart"  @click="showCart=!showCart">
-                    </div>
-                    <div v-show="showCart">
-                        <p v-if="!cartItems.length" style="padding-left: 55px">В корзине нет товаров</p>
-                        <cart-item class="cart-item product__order" v-for="item of cartItems" :key="item.id_product" :cart-item="item" :img="$root.$refs.products.img" @remove="remove">
+                    <a href="#" class="bin__img" @click="showCart=!showCart">
+                        <img class="header__cart" src="img/cart.png" alt="cart">
+                    </a>
+                    <div class="product__order" v-show="showCart">
+                        <p v-if="!cartItems.length" style="width:243px;text-align:center">В корзине нет товаров</p>
+                        <cart-item v-for="item of cartItems" :key="item.id_product" :cart-item="item" :img="$root.$refs.products.img" @remove="remove">
                         </cart-item>
-                    <div class="dollars" v-if=cartItems.length>'$'{{totalPrice}}</div>
+                        <div class="your__total__amount" v-if="cartItems.length">
+                                <div class="styleForTotal">
+                                    Total
+                                </div>
+                               <div class="dollars"> 
+                                    &#36;{{totalPrice}}
+                               </div>
+                        </div>
+                        <div class="checkout__go" v-if="cartItems.length">
+                            <div class="flex__button__checkout">
+                                <input type="submit" value="CHECKOUT" class="styleForCheckout">
+                            </div>
+                            <div class="flex__button__card">
+                                <input type="submit" value="GO TO CART" class="styleForCard">
+                            </div>
+                        </div>                                           
                     </div>
               </div>`
 });
@@ -124,19 +138,7 @@ Vue.component('cart-item', {
                             <div class="cross" @click="$emit('remove', cartItem)">
                                 <i class="fas fa-times-circle cross-circle"></i>
                             </div>
-                                <div class="your__total__amount">
-                                <div class="styleForTotal">Total</div>
                         </div>
-                        </div>
-                        <div class="checkout__go">
-                            <div class="flex__button__checkout">
-                                <input type="submit" value="CHECKOUT" class="styleForCheckout">
-                            </div>
-                            <div class="flex__button__card">
-                                <input type="submit" value="GO TO CART" class="styleForCard">
-                            </div>
-                        </div>
+                        
             </div>`
 });
-
-//   если будет ошибка, то эта строчка должна быть в cart: <div class="dollars" v-if=cartItems.length>'$'{{totalPrice}}</div>
