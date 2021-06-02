@@ -12,11 +12,11 @@ Vue.component('products', {
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
-    computed: {
-        img() {
-            return `${window?.location.origin || ''}/img/girlinred.png`;
-        }
-    },
+    /*     computed: {
+            img() {
+                return `${window?.location.origin || ''}/img/girlinred.png`;
+            }
+        }, */
     mounted() {
         this.$parent.getJson('/api/products')
             .then(data => {
@@ -61,6 +61,8 @@ Vue.component('product', {
                     <a href="#" class="text__mango">{{product.product_name}}</a>
                     <p class="price">&#36;{{product.price}}</p>
                 </div>
-                <div href="#" class="add__cart" @click="cartAPI.addProduct(product)"><img src="img/white_bin.png" alt="buy">Add to Cart</div>
+                <div @click="cartAPI.computedQuantity(product.id_product,$event)">
+                    <div href="#" class="add__cart" @click="cartAPI.addProduct(product)"><img src="img/white_bin.png" alt="buy">Add to Cart</div>
+                </div>
         </div>`
 });

@@ -63,19 +63,15 @@ a {
         display: block;
 
         .header__cart {
+            cursor: pointer;
             margin-right: 26px;
             animation: backInDown;
             animation-duration: 1s;
         }
     }
 
-    &:hover .product__order {
-        display: block;
-        left: -33px;
-    }
-
     .product__order {
-        display: none;
+        display: block;
         position: absolute;
         border: 1px solid #f4f4f4;
         border-radius: 5px;
@@ -312,6 +308,11 @@ a {
     color: $colorPink;
 }
 
+.cartItem {
+    width: 243px;
+    text-align: center;
+}
+
 .drop {
     z-index: 1;
     border-radius: 5px;
@@ -533,6 +534,10 @@ a {
 
 .product-item:hover .product-item__img {
     filter: brightness(40%);
+}
+
+.add__cart[img="buy"] {
+    cursor: pointer;
 }
 
 .product-item:hover .add__cart {

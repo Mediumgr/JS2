@@ -98,6 +98,7 @@ a {
 }
 
 .bin__for__order .bin__img .header__cart {
+  cursor: pointer;
   margin-right: 26px;
   -webkit-animation: backInDown;
           animation: backInDown;
@@ -105,13 +106,8 @@ a {
           animation-duration: 1s;
 }
 
-.bin__for__order:hover .product__order {
-  display: block;
-  left: -33px;
-}
-
 .bin__for__order .product__order {
-  display: none;
+  display: block;
   position: absolute;
   border: 1px solid #f4f4f4;
   border-radius: 5px;
@@ -388,6 +384,11 @@ a {
   color: #f16d7f;
 }
 
+.cartItem {
+  width: 243px;
+  text-align: center;
+}
+
 .drop {
   z-index: 1;
   border-radius: 5px;
@@ -645,6 +646,10 @@ a {
 .product-item:hover .product-item__img {
   -webkit-filter: brightness(40%);
           filter: brightness(40%);
+}
+
+.add__cart[img="buy"] {
+  cursor: pointer;
 }
 
 .product-item:hover .add__cart {
