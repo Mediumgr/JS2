@@ -1,11 +1,35 @@
+const cartItem = {
+    props: ['cartItem', 'img'],
+    name: 'cart-item',
+    template: `   <div>
+                        <div class="order__first">
+                            <div class="rebox__img">
+                                <img :src="img" alt="your product" class="rebox__img_photo">
+                            </div>
+                            <div class="flex__name__product">
+                                <a href="#" class="rebox__text">{{cartItem.product_name}}</a>
+                                <div class="star"><img src="img/4star.jpg" alt="stars"></div>
+                                <div class="price__for__order">{{cartItem.quantity}} X {{cartItem.quantity*cartItem.price}}$</div>
+                            </div>
+                            <div class="cross" @click="$emit('remove', cartItem)">
+                                <i class="fas fa-times-circle cross-circle"></i>
+                            </div>
+                        </div>
+                    </div>`
+};
+
+
 Vue.component('cart', {
+    components: {
+        cartItem
+    },
     data() {
         return {
             /*       cartUrl: '/getBasket.json', */
             cartItems: [],
             showCart: false,
             totalPrice: '',
-            counter: 0
+
         }
     },
     methods: {
@@ -29,13 +53,6 @@ Vue.component('cart', {
                     });
             }
             this.productsPriceShow();
-        },
-        computedQuantity(productId, event) {
-            for (let i = 0; i < this.$root.$refs.products.products.length; i++) {
-                if (productId === this.$root.$refs.products.products[i].id_product) {
-                    event.target.innerText = `Added ${this.counter++}`
-                }
-            }
         },
         remove(item) {
             if (item.quantity > 1) {
@@ -63,6 +80,9 @@ Vue.component('cart', {
         },
         calcSum() {
             return this.cartItems.reduce((accum, item) => accum + (item.price * item.quantity), 0);
+        },
+        changeIcon() {
+            console.log('Нужно как-то удалить строку <img class="header__cart" src="img/cart.png" alt="cart"> и поставить v-html вместо нее');
         },
     },
     mounted() {
@@ -113,27 +133,28 @@ Vue.component('cart', {
               </div>`
 });
 
-Vue.component('cart-item', {
-    props: ['cartItem', 'img'],
-    template:
-        /*  `
-                    <div class="cart-item">
-                        <div class="product-bio">
-                            <img :src="img" alt="Some image">
-                            <div class="product-desc">
-                                <p class="product-title">{{cartItem.product_name}}</p>
-                                <p class="product-quantity">Количество: {{cartItem.quantity}}</p>
-                                <p class="product-single-price">{{cartItem.price}}₽ за единицу</p>
-                            </div>
-                        </div>
-                        <div class="right-block">
-                            <p class="product-price">{{cartItem.quantity*cartItem.price}}₽</p>
-                            <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
-                        </div>
-                    </div>
-            ` */
 
-        `   <div>
+/* Vue.component('cart-item', {
+    props: ['cartItem', 'img'],
+    template: */
+/*  `
+            <div class="cart-item">
+                <div class="product-bio">
+                    <img :src="img" alt="Some image">
+                    <div class="product-desc">
+                        <p class="product-title">{{cartItem.product_name}}</p>
+                        <p class="product-quantity">Количество: {{cartItem.quantity}}</p>
+                        <p class="product-single-price">{{cartItem.price}}₽ за единицу</p>
+                    </div>
+                </div>
+                <div class="right-block">
+                    <p class="product-price">{{cartItem.quantity*cartItem.price}}₽</p>
+                    <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
+                </div>
+            </div>
+    ` */
+
+/*        `   <div>
                         <div class="order__first">
                             <div class="rebox__img">
                                 <img :src="img" alt="your product" class="rebox__img_photo">
@@ -149,4 +170,4 @@ Vue.component('cart-item', {
                         </div>
                         
             </div>`
-});
+}); */

@@ -1,7 +1,6 @@
 Vue.component('products', {
     data() {
         return {
-            /*   catalogUrl: '', */
             products: [],
             filtered: [],
         }
@@ -38,7 +37,15 @@ Vue.component('product', {
     data() {
         return {
             cartAPI: this.$root.$refs.cart,
+            counter: 0,
         };
+    },
+
+    methods: {
+        counterIncrease(event) {
+            event.target.innerText = `Added ${++this.counter} pcs`;
+            this.$root.$refs.cart.changeIcon();
+        }
     },
 
     template:
@@ -61,7 +68,7 @@ Vue.component('product', {
                     <a href="#" class="text__mango">{{product.product_name}}</a>
                     <p class="price">&#36;{{product.price}}</p>
                 </div>
-                <div @click="cartAPI.computedQuantity(product.id_product,$event)">
+                <div @click="counterIncrease($event)">
                     <div href="#" class="add__cart" @click="cartAPI.addProduct(product)"><img src="img/white_bin.png" alt="buy">Add to Cart</div>
                 </div>
         </div>`
