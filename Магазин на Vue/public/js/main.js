@@ -1,14 +1,12 @@
 const app = new Vue({
     el: '#app',
-    data: {
-        userSearch: '',
-    },
+    data: {},
     methods: {
         getJson(url) {
             return fetch(url)
                 .then(result => result.json())
                 .catch(error => {
-                    this.$refs.error.setError(error);
+                    this.$refs.error.setError();
                 })
         },
         postJson(url, data) {
@@ -20,7 +18,7 @@ const app = new Vue({
                     body: JSON.stringify(data)
                 }).then(result => result.json())
                 .catch(error => {
-                    this.$refs.error.setError(error);
+                    this.$refs.error.setError();
                 });
         },
         putJson(url, data) {
@@ -32,7 +30,7 @@ const app = new Vue({
                     body: JSON.stringify(data)
                 }).then(result => result.json())
                 .catch(error => {
-                    this.$refs.error.setError(error);
+                    this.$refs.error.setError();
                 });
         },
         deleteJson(url) {
@@ -43,7 +41,7 @@ const app = new Vue({
                     },
                 }).then(result => result.json())
                 .catch(error => {
-                    this.$refs.error.setError(error);
+                    this.$refs.error.setError();
                 });
         },
     },

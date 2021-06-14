@@ -9,9 +9,9 @@ const cartItem = {
                             <div class="flex__name__product">
                                 <a href="#" class="rebox__text">{{cartItem.product_name}}</a>
                                 <div class="star"><img src="img/4star.jpg" alt="stars"></div>
-                                <div class="price__for__order">{{cartItem.quantity}} pcs : {{cartItem.quantity*cartItem.price}}$</div>
+                                <div class="price__for__order">{{cartItem.quantity}} X {{cartItem.quantity*cartItem.price}}$</div>
                             </div>
-                            <div class="cross" @click="$emit('remove', cartItem, $event)">
+                            <div class="cross" @click="$emit('remove', cartItem)">
                                 <i class="fas fa-times-circle cross-circle"></i>
                             </div>
                         </div>
@@ -29,7 +29,6 @@ Vue.component('cart', {
             cartItems: [],
             showCart: false,
             totalPrice: '',
-
         }
     },
     methods: {
@@ -55,7 +54,7 @@ Vue.component('cart', {
             }
             this.productsPriceShow();
         },
-        remove(item, event) {
+        remove(item) {
             if (item.quantity > 1) {
                 this.$parent.putJson(`/api/cart/${item.id_product}`, {
                         quantity: -1
@@ -74,13 +73,6 @@ Vue.component('cart', {
                             this.cartItems.splice(this.cartItems.indexOf(item), 1);
                             this.productsPriceShow();
                             this.changeIcon();
-                            /* Возвращение DOM в первоначальное состояние у products после полного удаления товара из корзины*/
-                            this.$root.$refs.products.$children.forEach(function (element, index) {
-                                if (element.product.product_name === item.product_name) {
-                                    this.$root.$refs.products.$el.childNodes[index].parentElement.children[index].lastElementChild.childNodes[0].innerHTML = `<img src="img/white_bin.png" alt="buy">Add to Cart`;
-                                    this.$root.$refs.products.$children[index].productCounterUpdate(event);
-                                }
-                            }, this);
                         }
                     });
             }
@@ -93,12 +85,25 @@ Vue.component('cart', {
         },
         changeIcon() {
             if (this.cartProductsAmount !== 0) {
-                this.$el.childNodes[0].innerHTML =
-                    `<div class="bin__img" @click="showCart=!showCart"><img class="header__cart" src="./img/cart_full.png" alt="cart"></div><div class="cartAmount">${this.cartProductsAmount}</div>`;
+                this.$el.childNodes[0].children[1].innerHTML =
+                    `<div class="bin__img" @click="showCart=!showCart"><img class="header__cart" src="./img/cart.png" alt="cart"></div><span class="cartAmount">${this.cartProductsAmount}</span>`;
             } else {
-                this.$el.childNodes[0].innerHTML =
-                    `<div class="bin__img" @click="showCart=!showCart"><img class="header__cart" src="./img/cart.jpg" alt="cart"></div>`;
+                this.$el.childNodes[0].children[1].innerHTML =
+                    `<div class="bin__img" @click="showCart=!showCart"><img class="header__cart" src="./img/cart_empty.jpg" alt="cart"></div>`;
             }
+            /* 
+            .cartAmount {
+               border-radius: 65% ;
+               position: absolute;
+               top: -15px;
+               left: 11px;
+               color: #ff8b9d;
+               background: white;
+               border: 1px solid #ececec;
+               width: 33 % ;
+               text-align: center;
+               font-size: 12px;
+            }*/
         },
     },
     computed: {
@@ -128,7 +133,7 @@ Vue.component('cart', {
 
         `     <div class="bin__for__order">
                     <div class="bin__img" @click="showCart=!showCart">
-                        <img class="header__cart" src="img/cart.png" alt="cart">
+                        <img class="header__cart" src="./img/cart_empty.jpg" alt="cart">
                     </div>
                     <div class="product__order" v-show="showCart">
                         <p v-if="!cartItems.length" class="cartItem">В корзине нет товаров</p>

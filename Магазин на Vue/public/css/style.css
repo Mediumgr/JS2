@@ -89,30 +89,40 @@ a {
   margin-right: 13px;
 }
 
-.bin__for__order {
-  position: relative;
-}
-
 .bin__for__order .bin__img {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
 }
 
 .bin__for__order .bin__img .header__cart {
   cursor: pointer;
   margin-right: 26px;
-  -webkit-animation: backInDown;
-          animation: backInDown;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
 }
 
 .bin__for__order .product__order {
   display: block;
   position: absolute;
-  border: 1px solid #f4f4f4;
+  border: 2px solid #ececec;
   border-radius: 5px;
   background-color: #ffffff;
   padding: 5px 20px 20px 20px;
+}
+
+.bin__for__order .product__order::before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -10px;
+  right: 256px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ececec;
 }
 
 .bin__for__order .product__order .order__first {
@@ -323,7 +333,7 @@ a {
 
 .header button {
   cursor: pointer;
-  height: inherit;
+  height: 36px;
   padding: 0 10px;
   border: 0;
   background: none;
@@ -2699,5 +2709,91 @@ input:checked + .your__size:before {
 
 .Lorem {
   padding-top: 30px;
+}
+
+.error-block {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 500%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.error-msg {
+  padding: 30px 20px;
+  background-color: red;
+  color: white;
+  position: relative;
+}
+
+.close-btn {
+  font-size: 1.5em;
+  top: -40px;
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.cartAmount {
+  border-radius: 60%;
+  position: absolute;
+  top: -13px;
+  left: 13px;
+  color: #ff8b9d;
+  background: white;
+  border: 1px solid #ff8b9d;
+  font-size: 12px;
+  width: 15px;
+  text-align: center;
+}
+
+.messageFiltered {
+  font-size: 14px;
+  color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 100px;
+  height: 0;
+}
+
+.emailInformation {
+  font-size: 14px;
+  color: red;
+  padding-left: 16px;
+  padding-top: 4px;
+}
+
+.noProducts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #f9f9f9;
+  height: 140px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+  color: #ff8b9d;
+  font-size: 28px;
+  font-style: italic;
 }
 /*# sourceMappingURL=style.css.map */
