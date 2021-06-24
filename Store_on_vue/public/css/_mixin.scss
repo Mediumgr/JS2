@@ -1,0 +1,28 @@
+%same__font__style {
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+}
+
+@mixin same__font($fontSize, $fontFamily) {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    @extend %same__font__style;
+}
+
+%same__details {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    font-weight: bold;
+    line-height: 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(235, 235, 235, 1);
+    width: 232px;
+    padding: 8px 0 9px 11px;
+    outline: none;
+}
+
+@mixin shadow () {
+    box-shadow: 0px 0px 15px 3px #F16D7F;
+    transition: 0.4s;
+}
