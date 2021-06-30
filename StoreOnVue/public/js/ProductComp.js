@@ -16,9 +16,8 @@ Vue.component('products', {
     },
     computed: {
         checkFiltered() {
-            this.$root.$children[0].countProd = this.filtered.length;
+            this.$root.$children[0].countProd = this.filtered.length; //передаем в filterComp в поле countProd
             this.countProd2 = this.filtered.length;
-            /*             this.$root.$children[0].message(); */
         },
         img() {
             return `${window?.location.origin || ''}/img/teenager.png`;
@@ -38,7 +37,7 @@ Vue.component('products', {
     template: `
         <div class="products center">
             <div class="noProducts center" v-if="countProd2 === 0">{{error}}</div>
-            <product v-for="item of filtered" :key="item.id_product" :img="img" :product="item"></product> <product v-for="item of filtered" :key="item.id_product" :img="img" :product="item"></product>
+            <product v-for="item of filtered" :key="item.id_product" :img="img" :product="item"></product>
         </div>
     `
 });

@@ -5,7 +5,7 @@ Vue.component('filter-el', {
             userSearch: '',
             placeholder: 'Search for Featured Items...',
             searchIcon: "./img/search.png",
-            countProd: '',
+            countProd: '', //число прилетает из ProductComp метода checkFiltered()
         }
     },
     methods: {
