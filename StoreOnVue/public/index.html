@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+        integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="header center">
+            <filter-el></filter-el>
+            <div class="header__right">
+                <cart ref="cart"></cart>
+                <account ref='account'></account>
+            </div>
+        </div>
+        <products-menu ref="products-menu"></products-menu>
+        <offers ref="offers"></offers>
+        <products ref="products"></products>
+        <error ref="error"></error>
+        <content-center ref="content-center"></content-center>
+        <bottom ref="bottom"></bottom>
+        <footer-el ref="footer-el"></footer-el>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/FilterComp.js"></script>
+    <script src="js/MenuComp.js"></script>
+    <script src="js/CartComp.js"></script>
+    <script src='js/AccountComp.js'></script>
+    <script src='js/OffersComp.js'></script>
+    <script src="js/ProductComp.js"></script>
+    <script src="js/ErrorComp.js"></script>
+    <script src="js/ContentComp.js"></script>
+    <script src="js/BottomComp.js"></script>
+    <script src="js/FooterComp.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
